@@ -18,6 +18,7 @@ void decodifica (struct letras *letras, FILE *codificada, FILE *decodificada){
                     return;
             break;
             case -2:
+                fprintf (decodificada, "?");
                 if (fscanf (codificada, "%d", &valor) == EOF)
                     return;
             break;

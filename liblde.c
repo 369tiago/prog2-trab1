@@ -49,10 +49,11 @@ void adicionaCaracterOrdenado (struct letras *letras, char letra, int dado){
         else{ //Demais casos
             aux = letras->inicio;
             while (aux->prox && aux->prox->letra < novo->letra)
-            aux = aux->prox;
+                aux = aux->prox;
             novo->prox = aux->prox;
             aux->prox = novo;
-            letras->fim = novo;
+            if (!novo->prox)
+                letras->fim = novo;
             novo->chaves = inicializaChaves (novo->chaves);
             adicionaChaveCabeca (novo->chaves, dado);
         }
