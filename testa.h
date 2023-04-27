@@ -7,5 +7,7 @@ FILE *inicializaEscrita (char *arg);
 
 void testaParametro (int parametro, char opcao);
 
+void imprimeUsos ();
+
 #endif //___TESTA___
 
