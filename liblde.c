@@ -31,8 +31,10 @@ da função adicionaChaveCabeca. Caso contrário, o caractere é adicionado na l
 void adicionaCaracterOrdenado (struct letras *letras, char letra, int dado){
     struct nol *aux, *novo;
     novo = criaNol(letra);
-    if (!novo)
-        printf ("Falha ao alocar nó!\n");
+    if (!novo){
+        fprintf (stderr, "Falha ao alocar novo nó (liblde.c)");
+        exit (1);
+    }
     else{
         if (estaVazia(letras)){ //Caso em que a lista está vazia
             letras->inicio = novo;
@@ -66,8 +68,10 @@ o próprio nome diz, sempre insere a chave no começo da lista*/
 void adicionaChaveCabeca (struct chaves *chaves, int dado){
     struct noc* novo;
     novo = criaNoc(dado);
-    if (!novo)
-        printf ("Falha ao alocar nó!\n");
+    if (!novo){
+        fprintf (stderr, "Falha ao alocar novo nó (liblde.c)");
+        exit (1);
+    }
     else{
         if (!chaves->tam){
             chaves->inicio = novo;
@@ -104,8 +108,8 @@ struct letras *inicializaLetras (struct letras *letras){
     struct letras *letras_aux;
     letras_aux = malloc (sizeof (struct letras));
     if (!letras_aux){
-        perror ("Falha ao alocar lista de caracteres");
-        exit(1);
+        fprintf (stderr, "Falha ao inicializar lista de caracteres (liblde.c)");
+        exit (1);
     }
     letras_aux->tam = 0;
     letras_aux->inicio = NULL;
@@ -117,7 +121,7 @@ struct chaves *inicializaChaves (struct chaves *chaves){
     struct chaves *chaves_aux;
     chaves_aux = malloc (sizeof (struct chaves));
     if (!chaves_aux){
-        perror ("Falha ao alocar lista de chaves");
+        fprintf (stderr, "Falha ao inicializar lista de chaves (liblde.c)");
         exit (1);
     }
     chaves_aux->tam = 0;
