@@ -6,7 +6,7 @@
 correspondentes a letra desejada. Caso a letra seja um espaço, é codificada como -1, caso não exista na lista, é codificada como -2, e caso seja uma
 quebra de linha, é codificada como -3*/
 void codifica (struct letras *letras,  FILE *original, FILE *codificada){
-    int pos;
+    int pos, flag = 0;
     while (!feof(original)){
         char letra = tolower (fgetc (original));
         if (letra == ' ')
@@ -19,6 +19,7 @@ void codifica (struct letras *letras,  FILE *original, FILE *codificada){
                 aux = aux->prox;
             if (aux->letra != letra){
                 fprintf (codificada, "-2");
+                flag = 1;
             }
             else{
                 pos = rand()%(aux->chaves->tam);
@@ -31,4 +32,6 @@ void codifica (struct letras *letras,  FILE *original, FILE *codificada){
         if (!feof(original))
             fprintf (codificada, " ");
     }
+    if (flag)
+        fprintf (stderr, "Há caracteres que não estão no arquivo de chaves. A codificação dessa mensagem não sera tão precisa quanto o ideal);
 }
