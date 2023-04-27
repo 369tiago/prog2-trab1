@@ -5,7 +5,7 @@
 FILE *inicializaLeitura (char *arg){
     FILE *arq;
     if (!(arq = fopen (arg, "r"))){
-        fprintf (stderr, "Arquivo %s inexistente", arg)
+        fprintf (stderr, "Arquivo %s inexistente", arg);
         exit(1);
     }
     return arq;

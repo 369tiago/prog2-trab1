@@ -41,5 +41,5 @@ void decodifica (struct letras *letras, FILE *codificada, FILE *decodificada){
         }
     }
     if (flag)
-        fprintf (stderr, "Alguns caracteres foram substituídos por '?', pois não estavam na lista de chaves);
+        fprintf (stderr, "Alguns caracteres foram substituídos por '?', pois não estavam na lista de chaves");
 }
