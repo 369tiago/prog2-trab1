@@ -1,3 +1,13 @@
 # prog2-trab1
 
-Um grande salve pra vc q ta lendo isso aq
+Nome: Tiago Mendes Bottamedi GRR 20220068
+
+Estruturas de dados utilizadas: 
+
+
+Algoritmos:
+
+
+Decisões tomadas e seus motivos:
+
+
