@@ -6,11 +6,11 @@ Caso o encontre, substitui pelo caracter correspondente, senão, pula o caracter
 void decodifica (struct letras *letras, FILE *codificada, FILE *decodificada){
     struct nol *aux;
     struct noc *aux1;
-    int valor;
+    int valor, flag = 0;
     aux = letras->inicio;
     if (fscanf (codificada, "%d", &valor) == EOF)
         return;
-    while (aux && valor){
+    while (aux && !feof(codificada)){
         switch (valor){
             case -1:
                 fprintf (decodificada," ");
@@ -21,6 +21,7 @@ void decodifica (struct letras *letras, FILE *codificada, FILE *decodificada){
                 fprintf (decodificada, "?");
                 if (fscanf (codificada, "%d", &valor) == EOF)
                     return;
+                flag = 1;
             break;
             case -3:
                 fprintf (decodificada, "\n");
@@ -43,4 +44,6 @@ void decodifica (struct letras *letras, FILE *codificada, FILE *decodificada){
             break;
         }
     }
+    if (flag)
+        fprintf (stderr, "Alguns caracteres foram substituídos por '?', pois não estavam na lista de chaves);
 }
