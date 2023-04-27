@@ -30,3 +30,10 @@ FILE *inicializaEscrita (char *arg){
     }
     return arq;
 }
+
+void imprimeUsos (){
+    fprintf (stderr, "Uso indevido, rode novamente respeitando as seguintes possibilidades:\n");
+    fprintf (stderr, "./beale  -e  -b LivroCifra -m MensagemOriginal -o MensagemCodificada -c ArquivoDeChaves\n");
+    fprintf (stderr, "./beale  -d  -i MensagemCodificada  -c ArquivoDeChaves  -o MensagemDecodificada\n");
+    fprintf (stderr, "./beale -d -i MensagemCodificada -b LivroCifra -o MensagemDecodificada\n");
+}
