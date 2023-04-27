@@ -14,19 +14,16 @@ void decodifica (struct letras *letras, FILE *codificada, FILE *decodificada){
         switch (valor){
             case -1:
                 fprintf (decodificada," ");
-                if (fscanf (codificada, "%d", &valor) == EOF)
-                    return;
+                fscanf (codificada, "%d", &valor);
             break;
             case -2:
                 fprintf (decodificada, "?");
-                if (fscanf (codificada, "%d", &valor) == EOF)
-                    return;
+                fscanf (codificada, "%d", &valor);
                 flag = 1;
             break;
             case -3:
                 fprintf (decodificada, "\n");
-                if (fscanf (codificada, "%d", &valor) == EOF)
-                    return;
+                fscanf (codificada, "%d", &valor);
             break;
             default:
                 aux1 = aux->chaves->inicio;
@@ -36,8 +33,7 @@ void decodifica (struct letras *letras, FILE *codificada, FILE *decodificada){
                 if (aux1->pos == valor){
                     fprintf (decodificada, "%c", aux->letra);
                     aux = letras->inicio;
-                    if (fscanf (codificada, "%d", &valor) == EOF)
-                        return;
+                    fscanf (codificada, "%d", &valor);
                 }
                 else
                     aux = aux->prox;
