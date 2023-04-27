@@ -5,7 +5,7 @@
 FILE *inicializaLeitura (char *arg){
     FILE *arq;
     if (!(arq = fopen (arg, "r"))){
-        perror ("Arquivo inexistente!");
+        fprintf (stderr, "Arquivo %s inexistente", arg)
         exit(1);
     }
     return arq;
@@ -13,7 +13,7 @@ FILE *inicializaLeitura (char *arg){
 
 void testaParametro (int parametro, char opcao){
     if (parametro){
-        fprintf (stderr, "Paramêtro -%c repetido, rode novamente", opcao);
+        imprimeUsos();
         exit (1);
     }
 }
@@ -21,11 +21,11 @@ void testaParametro (int parametro, char opcao){
 FILE *inicializaEscrita (char *arg){
     FILE *arq;
     if ((arq = fopen (arg, "r"))){
-        perror ("Arquivo já existe!");
+        fprintf (stderr, "Arquivo %s já existe e não será sobreescrito", arg);
         exit(1);
     }
     if (!(arq = fopen (arg, "w"))){
-        perror ("Falha ao criar arquivo!");
+        fprintf (stderr, "Falha ao abrir arquivo %s para escrita", arg);
         exit(1);
     }
     return arq;
