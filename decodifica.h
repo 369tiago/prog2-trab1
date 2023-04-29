@@ -2,7 +2,7 @@
 #define ___DECODIFICA___
 
 #include <stdio.h>
-#include "liblde.h"
+#include "listas.h"
 
 void decodifica (struct letras *letras, FILE *codificada, FILE *decodificada);
 

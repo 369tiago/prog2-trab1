@@ -8,13 +8,15 @@ quebra de linha, é codificada como -3*/
 void codifica (struct letras *letras,  FILE *original, FILE *codificada){
     int pos, flag = 0;
     char letra = tolower (fgetc (original));
+    struct nol *aux;
+    struct noc *aux1;
     while (!feof(original)){
         if (letra == ' ')
             fprintf (codificada, "-1");
         else if (letra == '\n')
             fprintf (codificada, "-3");
         else{
-            struct nol *aux = letras->inicio;
+            aux = letras->inicio;
             while (aux->prox && aux->letra < letra)
                 aux = aux->prox;
             if (aux->letra != letra){
@@ -23,7 +25,7 @@ void codifica (struct letras *letras,  FILE *original, FILE *codificada){
             }
             else{
                 pos = rand()%(aux->chaves->tam);
-                struct noc *aux1 = aux->chaves->inicio;
+                aux1 = aux->chaves->inicio;
                 for (int k=0; k<pos; k++)
                     aux1 = aux1->prox;
                 fprintf (codificada, "%d", aux1->pos);
@@ -34,5 +36,5 @@ void codifica (struct letras *letras,  FILE *original, FILE *codificada){
         letra = tolower (fgetc (original));
     }
     if (flag)
-        fprintf (stderr, "Há caracteres que não estão no arquivo de chaves. A codificação dessa mensagem não sera tão precisa quanto o ideal");
+        fprintf (stderr, "Há caracteres que não estão no arquivo de chaves. A codificação dessa mensagem não sera tão precisa quanto o ideal\n");
 }

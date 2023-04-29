@@ -2,7 +2,7 @@
 #define ___CHAVES___
 
 #include <stdio.h>
-#include "liblde.h"
+#include "listas.h"
 
 void criaListaLivro (FILE *livro, struct letras *letras);
 

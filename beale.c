@@ -1,16 +1,15 @@
-#include "liblde.h"
+#include "listas.h"
 #include "codifica.h"
 #include "decodifica.h"
 #include "chaves.h"
 #include "testa.h"
-#include <string.h>
 #include <time.h>
 #include <ctype.h>
 #include <getopt.h>
 #include <stdlib.h>
 
 int main(int argc, char *argv[]){
-    char *msgCod, *livroCifra, *arquivoChaves, *msgOrig, *msgDecod;
+    char *msgCod = NULL, *livroCifra = NULL, *arquivoChaves = NULL, *msgOrig = NULL, *msgDecod = NULL;
     int comando = 0, codificar = 0, argLivro = 0, argChaves = 0, decodificar = 0, argOrig = 0, argCod = 0, argDecod = 0;
     srand(time(NULL));
 
@@ -45,15 +44,12 @@ int main(int argc, char *argv[]){
                 msgDecod = optarg;
             break;
             case 'c':
-                if (argChaves){
-                    perror ("Paramêtro -o repetido, rode novamente");
-                    exit (1);
-                }
+                testaParametro (argChaves, 'c');
                 argChaves = 1;
                 arquivoChaves = optarg;
             break;
             default:
-                perror ("Uso indevido!");
+                imprimeUsos();
                 exit(1);
         }
 
@@ -61,7 +57,7 @@ int main(int argc, char *argv[]){
     letras = inicializaLetras (letras);
 
     if (codificar == decodificar){
-        perror ("Argumentos inválidos, uso indevido!");
+        imprimeUsos();
         exit (1);
     }
     else if (codificar){
@@ -102,7 +98,7 @@ int main(int argc, char *argv[]){
             fclose (decodificada);
         }
         else{
-            perror ("Algo deu errado");
+            imprimeUsos();
             exit (1);
         }
     }

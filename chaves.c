@@ -6,7 +6,7 @@
 /*A função abaixo recebe um livro-cifra e a partir dele gera as cifras. A função pega cada palavra do livro através do fscanf,
 e manda a primeira letra da palavra junto com um contador para a função responsável por adicionar elementos na lista.*/
 void criaListaLivro (FILE *livro, struct letras *letras){
-    char *palavra = malloc (sizeof(char) * 100);
+    char *palavra = malloc (sizeof(char) * BUFFER);
     int pos = 0;
     while (fscanf (livro, "%s", palavra) == 1){
         if (palavra[0] > 0)

@@ -7,39 +7,38 @@ void decodifica (struct letras *letras, FILE *codificada, FILE *decodificada){
     struct nol *aux;
     struct noc *aux1;
     int valor, flag = 0;
-    aux = letras->inicio;
     if (fscanf (codificada, "%d", &valor) == EOF)
         return;
-    while (aux && !feof(codificada)){
+    while (!feof(codificada)){
         switch (valor){
             case -1:
                 fprintf (decodificada," ");
-                fscanf (codificada, "%d", &valor);
             break;
             case -2:
                 fprintf (decodificada, "?");
-                fscanf (codificada, "%d", &valor);
                 flag = 1;
             break;
             case -3:
                 fprintf (decodificada, "\n");
-                fscanf (codificada, "%d", &valor);
             break;
             default:
-                aux1 = aux->chaves->inicio;
-                while (aux1->prox && aux1->pos != valor){
-                    aux1 = aux1->prox;
+                aux = letras->inicio;
+                while (aux){
+                    aux1 = aux->chaves->inicio;
+                    while (aux1->prox && aux1->pos != valor){
+                        aux1 = aux1->prox;
+                    }
+                    if (aux1->pos == valor){
+                        fprintf (decodificada, "%c", aux->letra);
+                        aux = letras->inicio;
+                        break;
+                    }
+                    aux = aux->prox;  
                 }
-                if (aux1->pos == valor){
-                    fprintf (decodificada, "%c", aux->letra);
-                    aux = letras->inicio;
-                    fscanf (codificada, "%d", &valor);
-                }
-                else
-                    aux = aux->prox;
             break;
         }
+        fscanf (codificada, "%d", &valor);
     }
     if (flag)
-        fprintf (stderr, "Alguns caracteres foram substituídos por '?', pois não estavam na lista de chaves");
+        fprintf (stderr, "Alguns caracteres foram substituídos por '?', pois não estavam na lista de chaves\n");
 }
