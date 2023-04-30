@@ -13,14 +13,6 @@ FILE *inicializaLeitura (char *arg){
     return arq;
 }
 
-/*Testa se o paramêtro já foi passado. Em caso afirmativo, imprime os usos corretos do programa e sai com código 1*/
-void testaParametro (int parametro, char opcao){
-    if (parametro){
-        imprimeUsos();
-        exit (1);
-    }
-}
-
 /*Tenta abrir o arquivo passado como argumento para escrita. Caso o arquivo já exista ou a abertura falhe, o programa
 sai com código 1 e avisa ao usuário*/
 FILE *inicializaEscrita (char *arg){
@@ -34,6 +26,14 @@ FILE *inicializaEscrita (char *arg){
         exit(1);
     }
     return arq;
+}
+
+/*Testa se o paramêtro já foi passado. Em caso afirmativo, imprime os usos corretos do programa e sai com código 1*/
+void testaParametro (int parametro, char opcao){
+    if (parametro){
+        imprimeUsos();
+        exit (1);
+    }
 }
 
 /*Imprime os usos corretos do programa*/

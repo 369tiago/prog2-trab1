@@ -4,13 +4,14 @@
 
 
 /*A função abaixo recebe um livro-cifra e a partir dele gera as cifras. A função pega cada palavra do livro através do fscanf,
-e manda a primeira letra da palavra junto com um contador para a função responsável por adicionar elementos na lista.*/
+e manda a primeira letra da palavra junto com um contador para a função responsável por adicionar elementos na lista. Caso a primeira letra
+da palavra não seja ASCII, é ignorada*/
 void criaListaLivro (FILE *livro, struct letras *letras){
     char *palavra = malloc (sizeof(char) * BUFFER);
     int pos = 0;
     while (fscanf (livro, "%s", palavra) == 1){
         if (palavra[0] > 0)
-            adicionaChave (letras, palavra[0], pos++);
+            insereLista (letras, palavra[0], pos++);
     }
     free (palavra);
 }
@@ -42,7 +43,7 @@ void criaListaArquivo (FILE *chaves, struct letras *letras){
         while (aux != '\n'){
             fscanf (chaves, "%d", &chave);
             aux = fgetc(chaves);
-            adicionaChave(letras, letra, chave);
+            insereLista(letras, letra, chave);
         }
     }
 }

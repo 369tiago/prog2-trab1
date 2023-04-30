@@ -34,7 +34,7 @@ void adicionaCaracterOrdenado (struct letras *letras, char letra, int dado);
 
 void adicionaChaveCabeca (struct chaves *chaves, int dado);
 
-void adicionaChave (struct letras *letras, char letra, int dado);
+void insereLista (struct letras *letras, char letra, int dado);
 
 int estaVazia (struct letras *letras);
 
@@ -45,7 +45,5 @@ struct chaves *inicializaChaves (struct chaves *chaves);
 struct letras *destroiLetras (struct letras *letras);
 
 struct chaves *destroiChaves (struct chaves *chaves);
-
-int busca (struct letras *letras, char letra);
 
 #endif //___LISTAS___

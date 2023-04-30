@@ -81,7 +81,8 @@ void adicionaChaveCabeca (struct chaves *chaves, int dado){
     }
 }
 
-void adicionaChave (struct letras *letras, char letra, int dado){
+/*A função abaixo verifica se a letra já esta na lista. Se sim, adiciona a nova posição referente à ela, senão, adiciona a letra e sua posição na lista*/
+void insereLista (struct letras *letras, char letra, int dado){
     struct nol *aux = letras->inicio;
     letra = tolower (letra);
     while (aux && aux->letra < letra)
@@ -112,6 +113,7 @@ struct letras *inicializaLetras (struct letras *letras){
     return letras_aux;
 }
 
+/*Realiza o malloc e inicializa as váriaveis da struct. Caso o malloc falhe, o programa sai com código de erro*/
 struct chaves *inicializaChaves (struct chaves *chaves){
     struct chaves *chaves_aux;
     chaves_aux = malloc (sizeof (struct chaves));
